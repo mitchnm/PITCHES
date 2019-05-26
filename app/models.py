@@ -32,13 +32,39 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
         return check_password_hash(self.pass_secure, password)
 
+class Pitch(db.Model):
+    """
+    This is the class which we will use to create the pitches for the app
+    """
+    __tablename__ = "pitches"
+
+    id = db.Column(db.Integer, primary_key = True)
+    title = db.Column(db.String)
+    content = db.Column(db.String)
+    date = db.Column(db.String)
+    time = db.Column(db.String)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    comments = db.relationship("Comment", backref="pitch", lazy="dynamic")
+
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+    def get_pitch_comments(self):
+        pitch = Pitch.query.filter_by(id=self.id).first()
+        comments = Comments.query.filter_by(pitch_id=pitch.id).order_by(Comments.time.desc())
+        return comments
 
 class Comments(db.Model):
-    __tablename__ = 'roles'
+    __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255))
-    users = db.relationship('User', backref='role', lazy="dynamic")
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))   
+    date = db.Column(db.String)
+    time = db.Column(db.String)
+    pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
 
-    def __repr__(self):
-        return f'User {self.name}'
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
