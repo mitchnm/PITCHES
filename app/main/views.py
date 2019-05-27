@@ -1,15 +1,15 @@
-from ..models import User, Comments
+from ..models import User, Comments, Pitch
 from . import main
 from flask import render_template, request, redirect, url_for, abort
-from .forms import UpdateProfile
-from flask_login import login_required
+from .forms import UpdateProfile, DisplayPitch
+from flask_login import login_required, current_user
 from .. import db, photos
 
 
 @main.route("/")
 def index():
     title = "Home"
-    return render_template("index.html", title=title)
+    return render_template('index.html', title = title)
 
 @main.route('/user/<uname>')
 def profile(uname):

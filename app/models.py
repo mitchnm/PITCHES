@@ -2,6 +2,8 @@ from . import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
+from datetime import datetime
+from sqlalchemy import func
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -44,7 +46,7 @@ class Pitch(db.Model):
     title = db.Column(db.String)
     content = db.Column(db.String)
     date = db.Column(db.String)
-    time = db.Column(db.String)
+    time = db.Column(db.DateTime ,index=True, default=func.now)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     Comments = db.relationship("Comments", backref="pitch", lazy="dynamic")
 
