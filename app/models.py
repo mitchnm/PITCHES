@@ -62,10 +62,8 @@ class Comments(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))   
-    date = db.Column(db.String)
-    time = db.Column(db.String)
+    comment = db.Column(db.String(255))
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     pitch_id = db.Column(db.Integer, db.ForeignKey("pitches.id"))
 
     def save_comment(self):

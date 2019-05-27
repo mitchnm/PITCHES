@@ -18,10 +18,11 @@
   <h2 style="text-align: center;"><strong><u>WELCOME TO PITCHES.</u></strong></h2>
 
   <div class="row">
-    {% for pitc in pitches %}
+    {% for pitch in pitches %}
     <div class="col-md-4">
-      <h3>{{pitc.content}}</h3>
-      <h5>Category:{{pitc.category}}</h5>
+      <h3>{{pitch.content}}</h3>
+      <h5>Category:{{pitch.category}}</h5>
+      <a href="comments.html">comments</a>
     </div>
     {% endfor %}
   </div>

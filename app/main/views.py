@@ -1,30 +1,40 @@
 from ..models import User, Comments, Pitch
 from . import main
 from flask import render_template, request, redirect, url_for, abort
-from .forms import UpdateProfile, DisplayPitch
+from .forms import UpdateProfile, DisplayPitch, CommentForm
 from flask_login import login_required, current_user
 from .. import db, photos
-
 
 @main.route("/", methods=['GET', 'POST'])
 def index():
     form = DisplayPitch()
     if form.validate_on_submit():
-      category = form.categories.data
-      pitch = form.text.data
+        category = form.categories.data
+        pitch = form.text.data
 
-      # Updated post
-      new_pitch = Pitch(category=category, content=pitch, user=current_user)
+        # Updated post
+        new_pitch = Pitch(category=category, content=pitch, user=current_user)
 
-      # save pitch method
-      new_pitch.save_pitch()
+        # save pitch method
+        new_pitch.save_pitch()
      
     pitches = Pitch.query.all()
     title = "Home"
     return render_template('index.html', title=title, pitch_form=form, pitches=pitches)  
-@main.route('/categories/comment/new/<int:id>', methods=['GET', 'POST'])
+
+@main.route('/', methods=['GET', 'POST'])
 @login_required
 def new_comment():
+
+    form = CommentForm()
+    comment = Comments.query.all()
+    if form.validate_on_submit():
+        comment = form.comment.data
+
+        new_comment = Comments(comment=comment)
+        new_comment.save_comment()
+    title = "COMMENTS"   
+    return render_template('comments.html', comment=comment, comment_form=form, title=title)    
     
 @main.route('/user/<uname>')
 def profile(uname):
