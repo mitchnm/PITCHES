@@ -45,9 +45,8 @@ class Pitch(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     content = db.Column(db.String)
-    date = db.Column(db.String)
-    time = db.Column(db.DateTime ,index=True, default=func.now)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    category = db.Column(db.String)
     Comments = db.relationship("Comments", backref="pitch", lazy="dynamic")
 
     def save_pitch(self):
@@ -72,20 +71,3 @@ class Comments(db.Model):
     def save_comment(self):
         db.session.add(self)
         db.session.commit()
-
-class Categories(db.Model):
-    __tablename__ = 'categories'
-
-    id =db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(255))
-    description = db.Column(db.String(255))
-
-
-    def save_categories(self):
-        db.session.add(self)
-        db.session.commit()
-
-    @classmethod
-    def get_categories(cls):
-        categories = Categories.query.all()
-        return categories

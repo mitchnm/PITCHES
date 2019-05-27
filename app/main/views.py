@@ -6,11 +6,26 @@ from flask_login import login_required, current_user
 from .. import db, photos
 
 
-@main.route("/")
+@main.route("/", methods=['GET', 'POST'])
 def index():
-    title = "Home"
-    return render_template('index.html', title = title)
+    form = DisplayPitch()
+    if form.validate_on_submit():
+      category = form.categories.data
+      pitch = form.text.data
 
+      # Updated post
+      new_pitch = Pitch(category=category, content=pitch, user=current_user)
+
+      # save pitch method
+      new_pitch.save_pitch()
+     
+    pitches = Pitch.query.all()
+    title = "Home"
+    return render_template('index.html', title=title, pitch_form=form, pitches=pitches)  
+@main.route('/categories/comment/new/<int:id>', methods=['GET', 'POST'])
+@login_required
+def new_comment():
+    
 @main.route('/user/<uname>')
 def profile(uname):
     user = User.query.filter_by(username=uname).first()

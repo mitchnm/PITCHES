@@ -1,4 +1,6 @@
 {% extends 'base.html'%}
+{% import 'bootstrap/wtf.html' as wtf%}
+
 <meta charset="utf-8">
 {% if title %}
 <title> {{ title }}</title>
@@ -14,27 +16,21 @@
   </div>
   {% endfor %}
   <h2 style="text-align: center;"><strong><u>WELCOME TO PITCHES.</u></strong></h2>
-  <h2 class="text-center"></h2>
-  <div class="row categories">
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
 
+  <div class="row">
+    {% for pitc in pitches %}
+    <div class="col-md-4">
+      <h3>{{pitc.content}}</h3>
+      <h5>Category:{{pitc.category}}</h5>
     </div>
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
+    {% endfor %}
   </div>
-  <div class="row categories">
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
-    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-    </div>
-  </div>
+  <br><br>
+
+  {% if current_user.is_authenticated %}
+  {{wtf.quick_form(pitch_form)}}
+  {%else%}
+  {%endif%}
+
 </div>
 {% endblock %}
