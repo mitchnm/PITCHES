@@ -22,9 +22,9 @@ def index():
     title = "Home"
     return render_template('index.html', title=title, pitch_form=form, pitches=pitches)  
 
-@main.route('/', methods=['GET', 'POST'])
+@main.route('/pitch/<int:id>', methods=['GET', 'POST'])
 @login_required
-def new_comment():
+def new_comment(id):
 
     form = CommentForm()
     comment = Comments.query.all()
