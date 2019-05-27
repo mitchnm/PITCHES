@@ -1,5 +1,10 @@
-{% extends 'base.html'%} 
-
+{% extends 'base.html'%}
+<meta charset="utf-8">
+{% if title %}
+<title> {{ title }}</title>
+{% else %}
+<title> Pitch </title>
+{% endif %}
 {% block content %}
 <div class="container">
   {% for message in get_flashed_messages() %}
@@ -9,27 +14,27 @@
   </div>
   {% endfor %}
   <h1>WELCOME TO PITCHES.</h1>
-    <h2 class="text-center"></h2>
-    <div class="row categories">
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      
-      </div>
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
+  <h2 class="text-center"></h2>
+  <div class="row categories">
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+
     </div>
-    <div class="row categories">
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
-      <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
-      </div>
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
     </div>
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+  </div>
+  <div class="row categories">
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+    <div class="category col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    </div>
+  </div>
 </div>
 {% endblock %}
