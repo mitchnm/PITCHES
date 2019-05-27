@@ -7,7 +7,7 @@ from .. import db
 from ..email import mail_message
 
 
-@auth.route('/login')
+@auth.route('/login', methods=['GET', 'POST'])
 def login():
     login_form = LoginForm()
     if login_form.validate_on_submit():
@@ -27,7 +27,6 @@ def register():
         db.session.add(user)
         db.session.commit()
 
-        mail_message("Welcome to watchlist", "email/welcome_user", user.email, user=user)
 
         return redirect(url_for('auth.login'))
         title = "New Account"
