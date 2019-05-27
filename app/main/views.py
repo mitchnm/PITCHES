@@ -20,7 +20,7 @@ def profile(uname):
 
     return render_template("profile/profile.html", user=user)
 
-@main.route('/user/<uname>/update',methods = ['GET','POST'])
+@main.route('/user/<uname>/update', methods=['GET', 'POST'])
 @login_required
 def update_profile(uname):
     user = User.query.filter_by(username = uname).first()

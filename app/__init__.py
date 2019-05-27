@@ -25,6 +25,7 @@ def create_app(config_name):
 
     app = Flask(__name__)
 
+    app.config["SECRET_KEY"]='mitchngombe'
 
     # Initializing flask extensions
     bootstrap.init_app(app)
