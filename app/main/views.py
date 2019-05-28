@@ -34,7 +34,7 @@ def new_comment(id):
 
         new_comment = Comments(comment=comment, user_id=current_user.id, pitch=pitch)
         new_comment.save_comment()
-        #return redirect(url_for('.comments', id=comment.id))
+        return redirect(url_for('main.new_comment', id=pitch.id))
 
     title = "COMMENTS"   
     return render_template('comments.html', comment=comment, comment_form=form, title=title, pitch=pitch)    
