@@ -32,12 +32,12 @@ def new_comment(id):
     if form.validate_on_submit():
         comment = form.comment.data
 
-        new_comment = Comments(comments=comment, user_id=current_user.id, pitch=pitch)
+        new_comment = Comments(comment=comment, user_id=current_user.id, pitch=pitch)
         new_comment.save_comment()
         #return redirect(url_for('.comments', id=comment.id))
 
-    title = "COMMENTS"
-    return render_template('comments.html', comments=comment, comment_form=form, title=title, pitch=pitch)    
+    title = "COMMENTS"   
+    return render_template('comments.html', comment=comment, comment_form=form, title=title, pitch=pitch)    
     
 @main.route('/user/<uname>')
 def profile(uname):
