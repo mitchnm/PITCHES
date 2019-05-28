@@ -4,12 +4,17 @@
 
 {% block content %}
 <div class="container">
-  {% for comment in comments %}
-  {{comment.comment}}
-  {% endfor %}
-  {% if current_user.is_authenticated %}
-  {{wtf.quick_form(comment_form)}}
-  {% else %}
-  {% endif %}
+  <div class="row">
+    {% for comment in comments %}
+    <div class="col-md-3">
+      {{comment.comment}}
+    </div>
+    {% endfor %}
+  </div>
+  <br<br>
+    {% if current_user.is_authenticated %}
+    {{wtf.quick_form(comment_form)}}
+    {% else %}
+    {% endif %}
 </div>
 {% endblock %}
