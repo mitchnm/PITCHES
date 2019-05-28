@@ -22,7 +22,7 @@
     <div class="col-md-4">
       <h3>{{pitch.content}}</h3>
       <h5>Category:{{pitch.category}}</h5>
-      <a href="/pitch{{pitch.id}}">comments</a>
+      <a href="{{url_for('.comments',id=comment.id)}}">comments</a>
     </div>
     {% endfor %}
   </div>

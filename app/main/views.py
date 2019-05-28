@@ -22,19 +22,22 @@ def index():
     title = "Home"
     return render_template('index.html', title=title, pitch_form=form, pitches=pitches)  
 
-@main.route('/pitch/<int:id>', methods=['GET', 'POST'])
+@main.route('/comments/<int:id>', methods=['GET', 'POST'])
 @login_required
 def new_comment(id):
 
     form = CommentForm()
-    comment = Comments.query.all()
+    comment = Comments.query.filter_by(id=id).first()
+
     if form.validate_on_submit():
         comment = form.comment.data
 
-        new_comment = Comments(comment=comment)
+        new_comment = Comments(comment=comment, user_id=current_user.id)
         new_comment.save_comment()
+        return redirect(url_for('.comments', id=comment.id))
+
     title = "COMMENTS"   
-    return render_template('comments.html', comment=comment, comment_form=form, title=title)    
+    return render_template('index.html', comment=comment, comment_form=form, title=title)    
     
 @main.route('/user/<uname>')
 def profile(uname):
