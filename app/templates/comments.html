@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
+
 {% import 'bootstrap/wtf.html' as wtf %}
+
 {% block content %}
+<div class="container">
+  {% for comment in comments %}
+  {{comment.comment}}
+  {% endfor %}
   {% if current_user.is_authenticated %}
-    {{wtf.quick_form(comment_form)}}
+  {{wtf.quick_form(comment_form)}}
   {% else %}
   {% endif %}
+</div>
 {% endblock %}
