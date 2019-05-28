@@ -1,36 +1,39 @@
-{% extends 'base.html'%}
-{% import 'bootstrap/wtf.html' as wtf%}
+<body>
+  {% extends 'base.html'%}
+  {% import 'bootstrap/wtf.html' as wtf%}
 
-<meta charset="utf-8">
-{% if title %}
-<title> {{ title }}</title>
-{% else %}
-<title> Pitch </title>
-{% endif %}
-{% block content %}
+  <meta charset="utf-8">
+  {% if title %}
+  <title> {{ title }}</title>
+  {% else %}
+  <title> Pitch </title>
+  {% endif %}
+  {% block content %}
 
-<div class="container">
-  {% for message in get_flashed_messages() %}
-  <div class="alert alert-info">
-    <button type="button" class="close" data-dismiss="alert">&times;</button>
-    {{ message }}
-  </div>
-  {% endfor %}
-  <h2 style="text-align: center;"><strong><u>WELCOME TO PITCHES.</u></strong></h2><br><br>
-
-  <div class="row" style="margin-bottom: 0%;">
-    {% for pitch in pitches %}
-    <div class="col-md-4" style=" padding-bottom: 2.5%; text-align: center;">
-      <h2 class="card-text">{{pitch.content}}</h2>
-      <h5 class="card-text">Category:{{pitch.category}}</h5>
-      <a href="/pitch/{{pitch.id}}">comments</a>
+  <div class="container">
+    <h2 style="text-align: center;"><strong><u>WELCOME TO PITCHES.</u></strong></h2><br><br>
+    <h2 style="font-size: 50px; text-align: center; font-family: 'Raleway', sans-serif;
+    font-family: 'Cute Font', cursive;
+    font-family: 'Indie Flower', cursive;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Righteous', cursive;
+    font-family: 'ZCOOL KuaiLe', cursive;">TO VIEW AND COMMENT ON PITCHES, PLEASE LOG IN IF YOU ALREADY HAVE AN ACCOUNT
+      AND IF NOT, PLEASE SIGN UP</h2><br><br>
+    <h1 style="text-align: center; font-size: 85px;">👍🏿</h1>
+    <div class="row" style="margin-bottom: 0%;">
+      {% if current_user.is_authenticated %}
+      {% for pitch in pitches %}
+      <div class="col-md-4 col-xs-4 col-lg-4 col-sm-4" style=" padding-bottom: 2.5%; text-align: center;">
+        <h2 class="card-text">{{pitch.content}}</h2>
+        <h5 class="card-text">Category:{{pitch.category}}</h5>
+        <a href="/pitch/{{pitch.id}}">comments</a>
+      </div>
+      {% endfor %}
     </div>
-    {% endfor %}
+    <br><br>
+    {{wtf.quick_form(pitch_form)}}
+    {%else%}
+    {%endif%}
   </div>
-  <br><br>
-  {% if current_user.is_authenticated %}
-  {{wtf.quick_form(pitch_form)}}
-  {%else%}
-  {%endif%}
-</div>
-{% endblock %}
+  {% endblock %}
+</body>
