@@ -8,6 +8,7 @@
 <title> Pitch </title>
 {% endif %}
 {% block content %}
+
 <div class="container">
   {% for message in get_flashed_messages() %}
   <div class="alert alert-info">
@@ -20,30 +21,16 @@
   <div class="row" style="margin-bottom: 0%;">
     {% for pitch in pitches %}
     <div class="col-md-4" style=" padding-bottom: 2.5%; text-align: center;">
-      <div class="card-body">
-        <h2 class="card-text">{{pitch.content}}</h2>
-        <h5 class="card-text">Category:{{pitch.category}}</h5>
-      </div>
+      <h2 class="card-text">{{pitch.content}}</h2>
+      <h5 class="card-text">Category:{{pitch.category}}</h5>
       <a href="/pitch/{{pitch.id}}">comments</a>
     </div>
     {% endfor %}
   </div>
-
-
-
-
   <br><br>
-
   {% if current_user.is_authenticated %}
   {{wtf.quick_form(pitch_form)}}
   {%else%}
   {%endif%}
-
 </div>
-
-<style>
-  #submit {
-    color: black;
-  }
-</style>
 {% endblock %}
