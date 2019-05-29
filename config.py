@@ -3,9 +3,9 @@ import os
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
-    # SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mitch:qwertyuiop@localhost/pitch'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mitch:qwertyuiop@localhost/pitch'
 
-    # SQLALCHEMY_TRACK_MODIFICATIONS=False
+    SQLALCHEMY_TRACK_MODIFICATIONS=False
 
     #  email configurations
     MAIL_SERVER = 'smtp.googlemail.com'
