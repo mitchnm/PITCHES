@@ -3,16 +3,15 @@
 {% block content %}
 <div class="container">
   <div class="row">
-
     <!-- displaying  Username-->
     <div class="col-md-6">
       <h3> {{user.username| capitalize}} </h3>
 
       <!--Displaying user bio-->
       {% if user.bio %}
-      <p> {{user.bio}}</p>
+      <h3 style="font-family: 'Irish Grover', cursive;"> {{user.bio}}</h3>
       {%else%}
-      <p> {{user.username| capitalize}} has no bio </p>
+      <h3 style="font-family: 'Irish Grover', cursive;"> {{user.username| capitalize}} has no bio </h3>
       {% endif %}
       {% if user == current_user %}
       <a href="{{url_for('main.update_profile',uname=user.username)}}">Edit profile</a>
@@ -20,7 +19,7 @@
     </div>
 
     <!--Display profile photo-->
-    <div class="col-md-6" style="image-float:right;">
+    <div class="col-md-6">
       {% if user.profile_pic_path %}
       <img src="{{url_for('static',filename=user.profile_pic_path)}}" alt="" class="img-thumbnail">
       {%else%}

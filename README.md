@@ -4,7 +4,7 @@
 
 ## Description
 
-This an application that allows a users to submit their one minute pitches and other users will leave comments to give their feedback on them.
+This an application that allows users to submit their pitches and other users can leave comments to give their feedback on them.
 
 ## Features
 * User can register or log in if he had not.
@@ -23,12 +23,12 @@ This an application that allows a users to submit their one minute pitches and o
 
 ## BDD
 
-| Behavior                    | Input                         | Output                                     |
-|----------------------------:|:-----------------------------:|-------------------------------------------:|
-| Homepage loads              |  Click on log in              |  Displays log in page                      |
-| New page loads              |  Click on sign up             |  Displays sign up page                     |
-| Profile page loads          |  Click add pitch              |  Add pitch                                 |
-| Comment page loads          |  Click comments               |  Add comment                               |
+| Behavior                    | Input                         | Output                       |
+|----------------------------:|:-----------------------------:|-----------------------------:|
+| Homepage loads              |  Click on log in              |  Displays log in page        |
+| New page loads              |  Click on sign up             |  Displays sign up page       |
+| Profile page loads          |  Click add pitch              |  Add pitch                   |
+| Comment page loads          |  Click comments               |  Add comment                 |
 
 ## Technologies used
 

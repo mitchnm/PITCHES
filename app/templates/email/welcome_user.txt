@@ -1,4 +1,4 @@
 Hello {{user.username}}
-Welcome to PITCHES
+WELCOME TO PITCHES.
 We have just seen you have signed up for our application and want to welcome you to the fam.
 Hope you enjoy our services.
